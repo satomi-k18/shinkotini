@@ -1,0 +1,94 @@
+# Windsurf main prompt
+assets:
+  - img/hero-yoga.webp
+  - img/kaikan.jpg
+  - img/cta-500yen.webp
+  - img/icon_money.svg
+  - img/icon_health.svg
+  - img/icon_support.svg
+
+pages:
+  - path: "/"
+    component: "HomePage"
+    sections:
+      # 既存 three_columns_icons などのセクションはここに並んでいる想定
+      # この trial セクションは three_columns_icons の直後に追加してください
+      - type: raw_html
+        props:
+          id: "trial"
+          html: |
+            <section class="py-20 bg-light text-center">
+              <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8">体験</h2>
+
+              <p class="text-lg md:text-xl text-dark leading-relaxed mb-8">
+                随時受付中！体験料金：<span class="font-bold">500円 / 1回</span><br>
+                ・体験の方はヨガマット無料レンタル（通常 100 円）<br>
+                ・LINE 公式または下記予約ボタンからお申し込みください。
+              </p>
+
+              <a href="https://lin.ee/XXXX" target="_blank" rel="noopener">
+                <img src="/img/cta-500yen.webp"
+                     alt="500円体験を予約する"
+                     class="mx-auto w-[320px] md:w-[380px] hover:scale-105 transition" />
+              </a>
+            </section>
+
+      # CTA バナーセクション
+      - type: cta_banner
+        props:
+          headline: ""
+          cta_text: "500円体験を予約する"
+          cta_link: "https://lin.ee/XXXX"
+          cta_style:
+            bg: "bg-gradient-to-b from-lime-300 to-green-600"
+            text: "text-white"
+            rounded: "rounded-full"
+            padding: "py-4 px-10"
+            shadow: "shadow-xl"
+            flex: "inline-flex items-center gap-3"
+            extra: "before:content-[''] before:inline-block before:w-4 before:h-6 before:bg-[url('/img/beginner.svg')]"
+
+      # 料金カードセクション
+      - type: raw_html
+        props:
+          id: "pricing"
+          html: |
+            <section class="py-24">
+              <!-- ▼ 外枠ボックス -->
+              <div class="mx-auto max-w-6xl rounded-3xl border border-primary/40 bg-primary/5 shadow-sm p-10 md:p-14">
+                <!-- 見出し -->
+                <h2 class="text-3xl md:text-4xl font-extrabold text-primary text-center flex items-center justify-center gap-2 mb-4">
+                  💰 料金プランが選べる！
+                </h2>
+                <p class="text-center text-gray-600 mb-12">
+                  ライフスタイルに合わせて 3 つのプランをご用意しました
+                </p>
+
+                <!-- ▼ ３列グリッド -->
+                <div class="grid gap-8 md:grid-cols-3">
+                  <!-- カード 1 -->
+                  <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
+                    <span class="text-4xl mb-4">🏃‍♀️</span>
+                    <h3 class="text-lg font-bold text-dark mb-1">フルタイムプラス</h3>
+                    <p class="text-sm text-gray-500 mb-4">1日2レッスンまで通い放題</p>
+                    <p class="text-3xl font-extrabold text-primary mb-1">17,600<span class="text-xl">円/月</span></p>
+                  </div>
+
+                  <!-- カード 2 -->
+                  <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
+                    <span class="text-4xl mb-4">🌞</span>
+                    <h3 class="text-lg font-bold text-dark mb-1">デイタイム</h3>
+                    <p class="text-sm text-gray-500 mb-4">15時開始までのレッスン通い放題</p>
+                    <p class="text-3xl font-extrabold text-primary mb-1">8,888<span class="text-xl">円/月</span></p>
+                  </div>
+
+                  <!-- カード 3 -->
+                  <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
+                    <span class="text-4xl mb-4">📖</span>
+                    <h3 class="text-lg font-bold text-dark mb-1">月4回</h3>
+                    <p class="text-sm text-gray-500 mb-4">週1ペースでゆったり受講</p>
+                    <p class="text-3xl font-extrabold text-primary mb-1">8,910<span class="text-xl">円/月</span></p>
+                  </div>
+                </div>
+              </div>
+            </section>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>新琴似ヨガクラス | LP仕様書</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ── カラー & 変数 ───────────────────── */
+    :root {
+      --primary: #6FB7B7;
+      --accent : #FFB6C1;
+      --base   : #F7F7F7;
+      --text-head: #28433D;
+      --text-body: #374151;
+    }
+
+    /* ── ベーススタイル ───────────────────── */
+    * {box-sizing:border-box; margin:0; padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:"Noto Sans JP", sans-serif;
+      color:var(--text-body);
+      line-height:1.8;
+      background:var(--base);
+    }
+
+    /* ── ナビゲーション ───────────────────── */
+    header{background:var(--primary); position:sticky; top:0; z-index:1000;}
+    nav{max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:16px; flex-wrap:wrap;}
+    nav .logo{font-size:1.2rem; font-weight:700; color:#fff;}
+    nav ul{list-style:none; display:flex; gap:24px; flex-wrap:wrap;}
+    nav a{color:#fff; text-decoration:none; font-weight:600; transition:opacity .2s;}
+    nav a:hover{opacity:.8;}
+
+    /* ── セクション ───────────────────────── */
+    section{padding:80px 24px;}
+    section:nth-of-type(even){background:#fff;}
+    h2{margin-bottom:24px; font-size:1.8rem; text-align:center; color:var(--primary);}
+    .container{max-width:960px; margin:0 auto;}
+
+    /* ── レッスンカード ───────────────────── */
+    .lesson-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;}
+    .lesson-card{background:#fff;border:2px solid #E0E0E0;border-radius:24px;padding:40px 28px;box-shadow:6px 6px 0 #D9D9D9;text-align:center;display:flex;flex-direction:column;align-items:center;}
+    .lesson-card .icon{font-size:56px;margin-bottom:24px;color:var(--primary);}
+    .lesson-card h3{font-size:1.4rem;font-weight:800;margin:0 0 16px;line-height:1.3;}
+    .lesson-card p{margin:0;text-align:left;white-space:pre-line;}
+
+    /* ── カスタムチェックリスト ───────────── */
+    ul.custom-list{list-style:none;padding:0;margin:0 0 24px;}
+    ul.custom-list li{position:relative;padding-left:1.8em;margin:.4em 0;}
+    ul.custom-list li::before{content:"✔";font-weight:900;font-size:1.1em;position:absolute;left:0;color:var(--primary);}
+
+    /* ── テーブル & ボタン ─────────────────── */
+    table{width:100%; border-collapse:collapse;}
+    th,td{border:1px solid #ddd; padding:8px; text-align:center;}
+    .btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 32px; border-radius:4px; text-decoration:none; transition:opacity .2s;}
+    .btn:hover{opacity:.85;}
+
+    /* ── HERO ─────────────────────────────── */
+    .hero {position:relative;height:550px;overflow:hidden;}
+    .hero-bg{width:100%;height:100%;object-fit:cover;}
+    .hero-copy{position:absolute;left:clamp(24px,10vw,120px);bottom:clamp(40px,15vw,160px);} /* color moved to Tailwind classes */
+    assets:
+  - img/hero-yoga.webp
+  - img/kaikan.jpg
+  - img/cta-500yen.webp      # ← 追加
+  - img/icon_money.svg
+  - img/icon_health.svg
+  - img/icon_support.svg
+    .hero-copy h1{font-size:clamp(2rem,4vw+1rem,3.2rem);line-height:1.2;margin:0 0 12px;font-weight:800;}
+    .hero-copy p{margin:0 0 24px;font-size:1.1rem;font-weight:600;}
+    .cta{display:inline-block;padding:14px 32px;border-radius:40px;background:#6FB7B7;color:#fff;font-weight:700;text-decoration:none;}
+
+    /* ── その他 ─────────────────────────── */
+    footer{background:var(--primary); color:#fff; text-align:center; padding:24px 16px;}
+  </style>
+</head>
+<body>
+  <!-- =============================
+    ナビゲーション
+  ============================== -->
+  <header>
+    <nav>
+      <div class="logo">新琴似ヨガ</div>
+      <ul>
+        <li><a href="#class">クラスについて</a></li>
+        <li><a href="#features">クラスの特徴</a></li>
+        <li><a href="#blog">ブログ</a></li>
+        <li><a href="#location">開催場所</a></li>
+        <li><a href="#trial">体験</a></li>
+        <li><a href="#pricing">料金</a></li>
+        <li><a href="#schedule">スケジュール</a></li>
+        <li><a href="#about">自己紹介</a></li>
+      </ul>
+    </nav>
+  </header>
+ 
+  <!-- =============================
+    Hero セクション（任意）
+  ============================== -->
+  <header class="hero relative h-[550px] overflow-hidden">
+    <img src="img/hero-yoga.webp" alt="ヨガをする女性のイメージ" class="hero-bg w-full h-full object-cover">
+    <div class="absolute inset-0" style="background:rgba(0,0,0,0.45);"></div>
+    <div class="hero-copy text-white">
+      <h1 class="text-5xl md:text-6xl leading-tight font-extrabold whitespace-pre-line">おうちの近くで<br>ヨガを習慣に</h1>
+      <p class="text-xl md:text-2xl mb-6 text-gray-100">ヨガをライフスタイルに</p>
+      <a href="#booking" class="inline-block py-4 px-8 rounded-full bg-[#6FB7B7] hover:bg-[#57a1a1] text-white shadow-lg font-bold">体験レッスン500円</a>
+    </div>
+  </header>
+
+  <!-- ▽ レッスンについて (カード UI) -->
+  <!-- ▽ クラスについて -->
+  <section id="class" class="section-light">
+    <h2 class="text-3xl font-bold mb-4">クラスについて</h2>
+    <p>おうちの近くでヨガを習慣にしてみませんか。<br>
+       楽に継続するのに簡単な方法<br><br>
+       それは<strong>『ご近所のクラスに通う』</strong>ことです。</p>
+
+    <p>気軽に始められて、そして頑張らなくても運動が継続できるようになってもらいたいとの考えからご近所さんたちが通いやすいクラスづくりを行なっています。</p>
+
+    <ul class="custom-list">
+      <li>移動時間も少ない</li>
+      <li>子どもが学校に行っている間に</li>
+      <li>お仕事がお休みの時に</li>
+      <li>敷居が高いと思っている方</li>
+      <li>身体を動かすのが好きな方</li>
+    </ul>
+
+    <p>仕事や子育てで忙しい私たち<br>
+       ココロとカラダをケアする時間とれていますか？</p>
+
+    <p>なかなか日常生活で自分の時間は取れないですよね。</p>
+
+    <p>そんな方にメンテナンスとしてヨガはとってもおすすめです。</p>
+
+    <p>普段動かさない部分をゆっくりと動かすことで、肩こりや腰痛といったカラダの不調はもちろん<br>
+       ヨガの呼吸が、イライラを少なくしたり、優しい気持ちになれたり、リラックスすることで<br>
+       ストレス軽減に伝わります。</p>
+
+    <p>日々時間に追われて生活しているけど、<br>
+       イライラしやすくなったとき<br>
+       イラッっとしてもひとつ引いて呼吸で一息つくことで、心を落ち着かせるようになったり、、<br>
+       こどもの穏やかにいられるようになります。</p>
+
+    <p>自分のカラダやココロは何を感じているのか呼吸に意識をむけることで普段の生活でも色々な気づきにつながります。</p>
+
+    <p>2021年からはじめた新琴似でのクラスです。<br>
+       ぜひ気軽に体験へいらしてください。</p>
+  </section>
+
+  <!-- ▽ クラスの特徴（カード UI） -->
+  <section id="features" class="section-light">
+    <h2 class="text-3xl font-bold mb-4">クラスの特徴</h2>
+    <div class="lesson-cards">
+      <div class="lesson-card">
+        <div class="icon">🚶‍♀️</div>
+        <h3>近所で<br>通いやすい</h3>
+        <p>新琴似・屯田・新川・石狩エリアから
+車でラクラク。移動時間を短縮して
+週１ペースでも習慣化◎</p>
+      </div>
+      <div class="lesson-card">
+        <div class="icon">🌿</div>
+        <h3>アロマ×ヨガ<br>相乗効果</h3>
+        <p>クラス中にアロマスプレーを使用。
+呼吸が深まりリラックス。
+基本の太陽礼拝を丁寧に学びます。</p>
+      </div>
+      <div class="lesson-card">
+        <div class="icon">👶</div>
+        <h3>子連れOK<br>初心者安心</h3>
+        <p>子育てママが多いクラス。
+軽減ポーズで無理なくチャレンジ。
+体験500円から気軽にスタート！</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+    Blog
+  ============================== -->
+  <section id="blog">
+    <div class="container">
+      <h2 class="text-3xl font-bold mb-4">ブログ</h2>
+      <p>最新の記事は <a href="#" target="_blank" rel="noopener">こちら</a> からご覧ください。</p>
+    </div>
+  </section>
+
+  <!-- =============================
+    Location
+  ============================== -->
+  <section id="location" class="bg-gray-100 py-20">
+    <div class="container mx-auto flex flex-col md:flex-row items-center gap-10 px-4">
+      <img src="img/kaikan.jpg" alt="新琴似双葉福祉会館 外観" class="w-full md:w-1/2 rounded-lg shadow-lg">
+      <div class="md:w-1/2">
+        <h2 class="text-3xl font-bold mb-4">開催場所</h2>
+        <p class="leading-relaxed whitespace-pre-line">
+          <strong>新琴似双葉福祉会館</strong>  
+          住所：札幌市北区新琴似 9 条 14 丁目 4-10  
+          駐車場あり・お車でお越し OK
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+    Trial
+  ============================== -->
+  <section id="trial" class="py-20 bg-light text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8">体験</h2>
+
+    <p class="text-lg md:text-xl text-dark leading-relaxed mb-8">
+      随時受付中！体験料金：<span class="font-bold">500円 / 1回</span><br>
+      ・体験の方はヨガマット無料レンタル（通常 100 円）<br>
+      ・LINE 公式または下記予約ボタンからお申し込みください。
+    </p>
+
+    <!-- ▼ 画像ボタン -->
+    <a href="https://lin.ee/XXXX" target="_blank" rel="noopener">
+      <img src="/img/cta-500yen.webp"
+           alt="500円体験を予約する"
+           class="mx-auto w-[320px] md:w-[380px] hover:scale-105 transition" />
+    </a>
+  </section>
+
+  <!-- =============================
+    Pricing
+  ============================== -->
+  </section>
+
+  <!-- =============================
+    Pricing
+  ============================== -->
+  <section id="pricing" class="py-24">
+    <div class="mx-auto max-w-6xl rounded-3xl border border-primary/40 bg-primary/5 shadow-sm p-10 md:p-14">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-primary text-center flex items-center justify-center gap-2 mb-4">
+        💰 料金プラン！
+      </h2>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
+          <span class="text-4xl mb-4">🧘‍♀️</span>
+          <h3 class="text-lg font-bold text-dark mb-1">体験1回</h3>
+          <p class="text-sm text-gray-500 mb-4"></p>
+          <p class="text-3xl font-extrabold text-primary mb-1">500<span class="text-xl">円</span></p>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
+          <span class="text-4xl mb-4">🌞</span>
+          <h3 class="text-lg font-bold text-dark mb-1">4回チケット</h3>
+          <p class="text-sm text-gray-500 mb-4">(期限2ヶ月)</p>
+          <p class="text-3xl font-extrabold text-primary mb-1">5,500<span class="text-xl">円</span></p>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
+          <span class="text-4xl mb-4">🏃‍♀️</span>
+          <h3 class="text-lg font-bold text-dark mb-1">1回</h3>
+          <p class="text-sm text-gray-500 mb-4">(当日)</p>
+          <p class="text-3xl font-extrabold text-primary mb-1">1,500<span class="text-xl">円</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+    Schedule
+  ============================== -->
+  <section id="schedule" class="py-24">
+    <div class="mx-auto max-w-5xl rounded-3xl border border-primary/40 bg-primary/5 shadow-sm p-10 md:p-14">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-primary text-center flex items-center justify-center gap-2 mb-4">
+        📅 レッスンスケジュール
+      </h2>
+      <p class="text-center text-gray-600 text-xl md:text-2xl mb-12">
+        毎週木曜日<br>10:30〜11:30<br><span class="text-base md:text-lg text-gray-500">（8/14 &amp; 8/21 は休講）</span>
+      </p>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
+          <span class="text-4xl mb-4">🧘‍♀️</span>
+          <h3 class="text-lg font-bold text-dark mb-1">通常レッスン</h3>
+          <p class="text-sm text-gray-500 mb-4">毎週木曜<br>10:30〜11:30</p>
+          <span class="inline-block bg-primaryLight text-white rounded-full px-4 py-1.5 text-sm">参加予約はこちら</span>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
+          <span class="text-4xl mb-4">⛔️</span>
+          <h3 class="text-lg font-bold text-dark mb-1">休講日</h3>
+          <p class="text-sm text-gray-500 mb-4">2025/08/14<br>お盆休み</p>
+          <span class="inline-block bg-gray-400 text-white rounded-full px-4 py-1.5 text-sm opacity-70 cursor-not-allowed">休講</span>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
+          <span class="text-4xl mb-4">⛔️</span>
+          <h3 class="text-lg font-bold text-dark mb-1">休講日</h3>
+          <p class="text-sm text-gray-500 mb-4">2025/08/21<br>施設メンテナンス</p>
+          <span class="inline-block bg-gray-400 text-white rounded-full px-4 py-1.5 text-sm opacity-70 cursor-not-allowed">休講</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================
+    About Me
+  ============================== -->
+  <section id="about" class="py-24">
+      <div class="mx-auto max-w-5xl flex flex-col md:flex-row items-start gap-8 md:gap-12 px-4">
+      <div class="md:w-6/12 order-2 md:order-1">
+        <h2 class="text-3xl md:text-4xl mb-6 font-extrabold text-primary">自己紹介</h2>
+        <p class="leading-relaxed whitespace-pre-line">
+          小西 聡美 — フリーランスヨガインストラクター／アロマコーディネーター
+
+          ── ヨガとの出会いは、自宅と会社を往復するだけだった会社員時代。
+          運動不足だった身体に心地よい汗が流れ、会社でのストレスも忘れて
+          夢中になれたホットヨガの開放感と爽快感にハマりました。
+
+          結婚・第一子の出産後も、仕事と子育ての合間を縫ってヨガを継続。
+          「もっと深く学びたい」と思いインストラクター養成コースを受講し、
+          フリーのヨガインストラクターとして活動をスタート。
+
+        
+          “近所で続けられるヨガ” を、新琴似という地域から広めていくことが目標です。
+
+          **保有資格**  
+          - 2017 年 9 月  全米ヨガアライアンス RYT200  
+          - 2017 年 11 月  JCCA ストレッチポールベーシックセブン インストラクター  
+          - 2018 年 2 月  アロマコーディネーター  
+          - 2021 年 2 月  YOGA Ekam Sapporo アシュタンガヨガ BASIC／POWER FLOW YOGA®  
+          - 2022 年 3 月  RYT300 修了・E-RYT200 取得
+        </p>
+      </div>
+      <img src="img/satomi-konishi-yoga-instructor.jpg" alt="ヨガポーズをとる小西聡美インストラクター" class="md:w-6/12 rounded-xl shadow-lg order-1 md:order-2">
+    </div>
+  </section>
+
+
+<!-- =============================
+    Instagram
+============================== -->
+<section id="instagram" class="py-16">
+  <div class="mx-auto max-w-md text-center">
+    <a href="https://www.instagram.com/yoga_sapporo_shinkotoni" target="_blank" rel="noopener" class="block rounded-2xl border border-gray-200 bg-white p-8 shadow-lg hover:shadow-xl transition">
+      <div class="text-5xl mb-4 text-pink-500">📷</div>
+      <h3 class="text-xl font-bold mb-2">Instagram で最新情報をチェック</h3>
+      <p class="text-gray-600 mb-4">@yoga_sapporo_shinkotoni</p>
+      <span class="inline-block bg-gradient-to-r from-pink-500 to-yellow-500 text-white px-6 py-2 rounded-full font-semibold">フォローする</span>
+    </a>
+    <div class="mt-8 text-center">
+      <a href="https://lin.ee/RX4TrHn" target="_blank" rel="noopener">
+        <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="LINE友だち追加" height="40" class="mx-auto">
+      </a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+
+  
