@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,73 +17,214 @@
   <style>
     /* ── カラー & 変数 ───────────────────── */
     :root {
-      --primary: #6FB7B7;
-      --accent : #FFB6C1;
-      --base   : #F7F7F7;
-      --text-head: #28433D;
-      --text-body: #374151;
+      --primary: #F4A27E; /* Soft Coral */
+      --accent : #A8D8D8; /* Soft Mint */
+      --base   : #FEFBF6; /* Off-white/Beige */
+      --text-head: #5D4037; /* Darker brown for headings */
+      --text-body: #4E4E4E; /* Softer gray for body */
+      --white: #FFFFFF;
     }
 
     /* ── ベーススタイル ───────────────────── */
     * {box-sizing:border-box; margin:0; padding:0;}
     html{scroll-behavior:smooth;}
     body{
-      font-family:"Noto Sans JP", sans-serif;
+      font-family: 'M PLUS Rounded 1c', "Noto Sans JP", sans-serif; /* New font */
       color:var(--text-body);
       line-height:1.8;
       background:var(--base);
     }
 
     /* ── ナビゲーション ───────────────────── */
-    header{background:var(--primary); position:sticky; top:0; z-index:1000;}
+    header{background:var(--primary); position:sticky; top:0; z-index:1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
     nav{max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:16px; flex-wrap:wrap;}
-    nav .logo{font-size:1.2rem; font-weight:700; color:#fff;}
+    nav .logo{font-size:1.2rem; font-weight:700; color:var(--white); letter-spacing: 1px;} /* Added letter-spacing */
     nav ul{list-style:none; display:flex; gap:24px; flex-wrap:wrap;}
-    nav a{color:#fff; text-decoration:none; font-weight:600; transition:opacity .2s;}
+    nav a{color:var(--white); text-decoration:none; font-weight:600; transition:opacity .2s;}
     nav a:hover{opacity:.8;}
 
     /* ── セクション ───────────────────────── */
-    section{padding:80px 24px;}
-    section:nth-of-type(even){background:#fff;}
-    h2{margin-bottom:24px; font-size:1.8rem; text-align:center; color:var(--primary);}
+    section{padding:80px 24px; position: relative;} /* Added position relative for wavy dividers */
+    section:nth-of-type(even){background:var(--white);}
+    h2{margin-bottom:48px; font-size:2.8rem; text-align:center; color:var(--primary); font-weight: 800;} /* Bolder h2 */
     .container{max-width:960px; margin:0 auto;}
 
     /* ── レッスンカード ───────────────────── */
     .lesson-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;}
-    .lesson-card{background:#fff;border:2px solid #E0E0E0;border-radius:24px;padding:40px 28px;box-shadow:6px 6px 0 #D9D9D9;text-align:center;display:flex;flex-direction:column;align-items:center;}
+    .lesson-card{
+        background:var(--white);
+        border: 1px solid #f0f0f0; /* Softer border */
+        border-radius:32px; /* More rounded */
+        padding:40px 28px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.04); /* Softer shadow */
+        text-align:center;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        transition: transform 0.3s ease; /* Add hover effect */
+    }
+    .lesson-card:hover {
+        transform: translateY(-5px); /* Hover effect */
+    }
     .lesson-card .icon{font-size:56px;margin-bottom:24px;color:var(--primary);}
-    .lesson-card h3{font-size:1.4rem;font-weight:800;margin:0 0 16px;line-height:1.3;}
+    .lesson-card h3{font-size:1.4rem;font-weight:800;margin:0 0 16px;line-height:1.3; color: var(--text-head);}
     .lesson-card p{margin:0;text-align:left;white-space:pre-line;}
 
     /* ── カスタムチェックリスト ───────────── */
-    ul.custom-list{list-style:none;padding:0;margin:0 0 24px;}
-    ul.custom-list li{position:relative;padding-left:1.8em;margin:.4em 0;}
+    ul.custom-list{list-style:none;padding:0;margin:24px auto; display: inline-block; text-align: left;} 
+    ul.custom-list li{position:relative;padding-left:1.8em;margin:.4em 0; font-size: 1.1rem;} /* Larger font */
     ul.custom-list li::before{content:"✔";font-weight:900;font-size:1.1em;position:absolute;left:0;color:var(--primary);}
 
-    /* ── テーブル & ボタン ─────────────────── */
-    table{width:100%; border-collapse:collapse;}
-    th,td{border:1px solid #ddd; padding:8px; text-align:center;}
-    .btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 32px; border-radius:4px; text-decoration:none; transition:opacity .2s;}
-    .btn:hover{opacity:.85;}
+    /* ── ボタン ─────────────────── */
+    .btn{
+        display:inline-block;
+        background:var(--accent);
+        color:var(--white);
+        padding:14px 40px; /* Adjust padding */
+        border-radius:9999px; /* Capsule shape */
+        text-decoration:none;
+        transition: all .3s;
+        font-weight: 700;
+        box-shadow: 0 4px 14px 0 rgba(168, 216, 216, 0.4);
+    }
+    .btn:hover{opacity:.9; transform: translateY(-1px); box-shadow: 0 6px 20px 0 rgba(168, 216, 216, 0.5);}
 
     /* ── HERO ─────────────────────────────── */
     .hero {position:relative;height:550px;overflow:hidden;}
     .hero-bg{width:100%;height:100%;object-fit:cover;}
-    .hero-copy{position:absolute;left:clamp(24px,10vw,120px);bottom:clamp(40px,15vw,160px);} /* color moved to Tailwind classes */
-    assets:
-  - img/hero-yoga.webp
-  - img/kaikan.jpg
-  - img/cta-500yen.webp      # ← 追加
-  - img/icon_money.svg
-  - img/icon_health.svg
-  - img/icon_support.svg
+    .hero-copy{position:absolute;left:clamp(24px,10vw,120px);bottom:clamp(40px,15vw,160px);}
     .hero-copy h1{font-size:clamp(2rem,4vw+1rem,3.2rem);line-height:1.2;margin:0 0 12px;font-weight:800;}
     .hero-copy p{margin:0 0 24px;font-size:1.1rem;font-weight:600;}
-    .cta{display:inline-block;padding:14px 32px;border-radius:40px;background:#6FB7B7;color:#fff;font-weight:700;text-decoration:none;}
+    .cta{
+        display:inline-block;
+        padding:16px 48px; /* Larger CTA */
+        border-radius:9999px; /* Capsule shape */
+        background:var(--primary);
+        color:var(--white);
+        font-weight:700;
+        text-decoration:none;
+        transition: all .3s;
+        box-shadow: 0 4px 14px 0 rgba(244, 162, 126, 0.4);
+    }
+    .cta:hover {
+        opacity:.9;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px 0 rgba(244, 162, 126, 0.5);
+    }
+
+    /* ── 画像 ─────────────────────────── */
+    .rounded-image {
+        border-radius: 24px; /* Rounded corners for specific images */
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+    }
+
+    /* ── 波線セパレーター ─────────────────── */
+    .wavy-divider {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        transform: rotate(180deg);
+    }
+    .wavy-divider-top {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+    }
+
+    .wavy-divider svg, .wavy-divider-top svg {
+        position: relative;
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 80px; /* Adjust wave height */
+    }
+
+    .wavy-divider .shape-fill, .wavy-divider-top .shape-fill {
+        fill: var(--base); /* Default fill */
+    }
 
     /* ── その他 ─────────────────────────── */
-    footer{background:var(--primary); color:#fff; text-align:center; padding:24px 16px;}
-  </style>
+    footer{background:var(--primary); color:var(--white); text-align:center; padding:48px 16px; margin-top: 80px; position:relative;}
+  
+    /* ── カレンダー ─────────────────────────── */
+    .calendar-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+    .calendar {
+        width: 100%;
+        max-width: 450px;
+        background: var(--white);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+    }
+    .calendar-header {
+        text-align: center;
+        margin-bottom: 24px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-head);
+    }
+    .calendar-grid {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .calendar-grid th {
+        text-align: center;
+        padding: 12px;
+        font-weight: 600;
+        color: var(--text-body);
+        font-size: 0.9rem;
+    }
+    .calendar-grid td {
+        text-align: center;
+        padding: 8px;
+        height: 50px;
+        border: 1px solid #f0f0f0;
+        vertical-align: top;
+        font-size: 0.9rem;
+    }
+    .calendar-day {
+        font-weight: 600;
+    }
+    .day-content {
+        font-size: 0.75rem;
+        margin-top: 4px;
+        line-height: 1.2;
+    }
+    .is-today {
+        background-color: #FFF7F0;
+    }
+    .is-lesson-day .calendar-day {
+        background-color: var(--primary);
+        color: var(--white);
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .is-lesson-day .day-content {
+        color: var(--primary);
+        font-weight: 700;
+    }
+    .is-cancelled .day-content {
+        color: #999;
+        text-decoration: line-through;
+    }
+    .is-other-month {
+        color: #ccc;
+    }
+</style>
 </head>
 <body>
   <!-- =============================
@@ -108,23 +251,27 @@
   ============================== -->
   <header class="hero relative h-[550px] overflow-hidden">
     <img src="img/hero-yoga.webp" alt="ヨガをする女性のイメージ" class="hero-bg w-full h-full object-cover">
-    <div class="absolute inset-0" style="background:rgba(0,0,0,0.45);"></div>
+    <div class="absolute inset-0" style="background:rgba(0,0,0,0.35);"></div>
     <div class="hero-copy text-white">
       <h1 class="text-5xl md:text-6xl leading-tight font-extrabold whitespace-pre-line">おうちの近くで<br>ヨガを習慣に</h1>
       <p class="text-xl md:text-2xl mb-6 text-gray-100">ヨガをライフスタイルに</p>
-      <a href="#booking" class="inline-block py-4 px-8 rounded-full bg-[#6FB7B7] hover:bg-[#57a1a1] text-white shadow-lg font-bold">体験レッスン500円</a>
+      <a href="https://line.me/R/ti/p/@ife1726h" target="_blank" rel="noopener" class="cta">体験レッスン500円</a>
+    </div>
+    <div class="wavy-divider">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
     </div>
   </header>
 
-  <!-- ▽ レッスンについて (カード UI) -->
   <!-- ▽ クラスについて -->
-  <section id="class" class="section-light">
-    <h2 class="text-3xl font-bold mb-4">クラスについて</h2>
-    <p>おうちの近くでヨガを習慣にしてみませんか。<br>
+  <section id="class" class="text-center">
+    <h2 class="text-5xl font-extrabold text-[var(--primary)]">クラスについて</h2>
+    <p class="text-center max-w-3xl mx-auto">おうちの近くでヨガを習慣にしてみませんか。<br>
        楽に継続するのに簡単な方法<br><br>
        それは<strong>『ご近所のクラスに通う』</strong>ことです。</p>
 
-    <p>気軽に始められて、そして頑張らなくても運動が継続できるようになってもらいたいとの考えからご近所さんたちが通いやすいクラスづくりを行なっています。</p>
+    <p class="text-center max-w-3xl mx-auto mt-6">気軽に始められて、そして頑張らなくても運動が継続できるようになってもらいたいとの考えからご近所さんたちが通いやすいクラスづくりを行なっています。</p>
 
     <ul class="custom-list">
       <li>移動時間も少ない</li>
@@ -134,31 +281,36 @@
       <li>身体を動かすのが好きな方</li>
     </ul>
 
-    <p>仕事や子育てで忙しい私たち<br>
+    <p class="text-center max-w-3xl mx-auto">仕事や子育てで忙しい私たち<br>
        ココロとカラダをケアする時間とれていますか？</p>
 
-    <p>なかなか日常生活で自分の時間は取れないですよね。</p>
+    <p class="text-center max-w-3xl mx-auto mt-6">なかなか日常生活で自分の時間は取れないですよね。</p>
 
-    <p>そんな方にメンテナンスとしてヨガはとってもおすすめです。</p>
+    <p class="text-center max-w-3xl mx-auto mt-6">そんな方にメンテナンスとしてヨガはとってもおすすめです。</p>
 
-    <p>普段動かさない部分をゆっくりと動かすことで、肩こりや腰痛といったカラダの不調はもちろん<br>
+    <p class="text-center max-w-3xl mx-auto mt-6">普段動かさない部分をゆっくりと動かすことで、肩こりや腰痛といったカラダの不調はもちろん<br>
        ヨガの呼吸が、イライラを少なくしたり、優しい気持ちになれたり、リラックスすることで<br>
        ストレス軽減に伝わります。</p>
 
-    <p>日々時間に追われて生活しているけど、<br>
+    <p class="text-center max-w-3xl mx-auto mt-6">日々時間に追われて生活しているけど、<br>
        イライラしやすくなったとき<br>
        イラッっとしてもひとつ引いて呼吸で一息つくことで、心を落ち着かせるようになったり、、<br>
        こどもの穏やかにいられるようになります。</p>
 
-    <p>自分のカラダやココロは何を感じているのか呼吸に意識をむけることで普段の生活でも色々な気づきにつながります。</p>
+    <p class="text-center max-w-3xl mx-auto mt-6">自分のカラダやココロは何を感じているのか呼吸に意識をむけることで普段の生活でも色々な気づきにつながります。</p>
 
-    <p>2021年からはじめた新琴似でのクラスです。<br>
+    <p class="text-center max-w-3xl mx-auto mt-6">2021年からはじめた新琴似でのクラスです。<br>
        ぜひ気軽に体験へいらしてください。</p>
+    <div class="wavy-divider">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill" style="fill:var(--white)"></path>
+        </svg>
+    </div>
   </section>
 
   <!-- ▽ クラスの特徴（カード UI） -->
-  <section id="features" class="section-light">
-    <h2 class="text-3xl font-bold mb-4">クラスの特徴</h2>
+  <section id="features">
+    <h2 class="text-5xl font-extrabold text-[var(--primary)]">クラスの特徴</h2>
     <div class="lesson-cards">
       <div class="lesson-card">
         <div class="icon">🚶‍♀️</div>
@@ -189,23 +341,23 @@
   ============================== -->
   <section id="blog">
     <div class="container">
-      <h2 class="text-3xl font-bold mb-4">ブログ</h2>
-      <p>最新の記事は <a href="#" target="_blank" rel="noopener">こちら</a> からご覧ください。</p>
+      <h2 class="text-5xl font-extrabold text-[var(--primary)]">ブログ</h2>
+      <p class="text-center">最新の記事は <a href="#" target="_blank" rel="noopener" style="color:var(--primary)">こちら</a> からご覧ください。</p>
     </div>
   </section>
 
   <!-- =============================
     Location
   ============================== -->
-  <section id="location" class="bg-gray-100 py-20">
-    <div class="container mx-auto flex flex-col md:flex-row items-center gap-10 px-4">
-      <img src="img/kaikan.jpg" alt="新琴似双葉福祉会館 外観" class="w-full md:w-1/2 rounded-lg shadow-lg">
-      <div class="md:w-1/2">
-        <h2 class="text-3xl font-bold mb-4">開催場所</h2>
-        <p class="leading-relaxed whitespace-pre-line">
+  <section id="location" class="py-20">
+    <div class="container mx-auto flex flex-col items-center gap-10 px-4">
+      <img src="img/kaikan.jpg" alt="新琴似双葉福祉会館 外観" class="w-full md:w-1/2 rounded-image">
+      <div class="md:w-1/2 text-center">
+        <h2 class="text-5xl font-extrabold text-[var(--primary)]">開催場所</h2>
+        <p class="leading-relaxed whitespace-pre-line text-lg">
           <strong>新琴似双葉福祉会館</strong>  
-          住所：札幌市北区新琴似 9 条 14 丁目 4-10  
-          駐車場あり・お車でお越し OK
+          <br>住所：札幌市北区新琴似 9 条 14 丁目 4-10  
+          <br>駐車場あり・お車でお越し OK
         </p>
       </div>
     </div>
@@ -214,18 +366,17 @@
   <!-- =============================
     Trial
   ============================== -->
-  <section id="trial" class="py-20 bg-light text-center">
-    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8">体験</h2>
+  <section id="trial" class="py-20 text-center">
+    <h2 class="mb-8 text-5xl font-extrabold text-[var(--primary)]">体験レッスン</h2>
 
-    <p class="text-lg md:text-xl text-dark leading-relaxed mb-8">
+    <p class="text-lg md:text-xl leading-relaxed mb-8">
       随時受付中！体験料金：<span class="font-bold">500円 / 1回</span><br>
       ・体験の方はヨガマット無料レンタル（通常 100 円）<br>
       ・LINE 公式または下記予約ボタンからお申し込みください。
     </p>
 
     <!-- ▼ 500円体験予約ボタン -->
-    <a href="https://lin.ee/1f1rf9q" target="_blank" rel="noopener"
-       class="inline-block bg-[#6FB7B7] text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-[#57a1a1] hover:shadow-xl transition">
+    <a href="https://lin.ee/1f1rf9q" target="_blank" rel="noopener" class="cta">
       500円体験を予約する
     </a>
   </section>
@@ -233,15 +384,10 @@
   <!-- =============================
     Pricing
   ============================== -->
-  </section>
-
-  <!-- =============================
-    Pricing
-  ============================== -->
   <section id="pricing" class="py-24">
-    <div class="mx-auto max-w-6xl rounded-3xl border border-primary/40 bg-primary/5 shadow-sm p-10 md:p-14">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-primary text-center flex items-center justify-center gap-2 mb-4">
-        💰 料金プラン！
+    <div class="mx-auto max-w-6xl rounded-3xl border border-[#F4A27E40] bg-[#F4A27E0D] shadow-sm p-10 md:p-14">
+      <h2 class="flex items-center justify-center gap-2 mb-4 text-5xl font-extrabold text-[var(--primary)]">
+        💰 料金プラン
       </h2>
 
       <div class="grid gap-8 md:grid-cols-3">
@@ -273,36 +419,17 @@
     Schedule
   ============================== -->
   <section id="schedule" class="py-24">
-    <div class="mx-auto max-w-5xl rounded-3xl border border-primary/40 bg-primary/5 shadow-sm p-10 md:p-14">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-primary text-center flex items-center justify-center gap-2 mb-4">
+    <div class="mx-auto max-w-5xl rounded-3xl border border-[#F4A27E40] bg-[#F4A27E0D] shadow-sm p-10 md:p-14">
+       <h2 class="flex items-center justify-center gap-2 mb-12 text-5xl font-extrabold text-[var(--primary)]">
         📅 レッスンスケジュール
       </h2>
-      <p class="text-center text-gray-600 text-xl md:text-2xl mb-12">
-        毎週木曜日<br>10:30〜11:30<br><span class="text-base md:text-lg text-gray-500">（8/14 &amp; 8/21 は休講）</span>
+      <div id="calendar-container" class="calendar-container"></div>
+      <p class="text-center mt-8 text-gray-600">
+        <span style="display: inline-block; width: 1em; height: 1em; border-radius: 50%; background-color: #F4A27E; margin-right: 0.5em; vertical-align: middle;"></span>レッスン日 (10:30-11:30)
       </p>
-
-      <div class="grid gap-8 md:grid-cols-3">
-        <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
-          <span class="text-4xl mb-4">🧘‍♀️</span>
-          <h3 class="text-lg font-bold text-dark mb-1">通常レッスン</h3>
-          <p class="text-sm text-gray-500 mb-4">毎週木曜<br>10:30〜11:30</p>
-          <span class="inline-block bg-primaryLight text-white rounded-full px-4 py-1.5 text-sm">参加予約はこちら</span>
-        </div>
-
-        <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
-          <span class="text-4xl mb-4">⛔️</span>
-          <h3 class="text-lg font-bold text-dark mb-1">休講日</h3>
-          <p class="text-sm text-gray-500 mb-4">2025/08/14<br>お盆休み</p>
-          <span class="inline-block bg-gray-400 text-white rounded-full px-4 py-1.5 text-sm opacity-70 cursor-not-allowed">休講</span>
-        </div>
-
-        <div class="rounded-2xl border border-gray-200 bg-white p-8 flex flex-col items-center text-center">
-          <span class="text-4xl mb-4">⛔️</span>
-          <h3 class="text-lg font-bold text-dark mb-1">休講日</h3>
-          <p class="text-sm text-gray-500 mb-4">2025/08/21<br>施設メンテナンス</p>
-          <span class="inline-block bg-gray-400 text-white rounded-full px-4 py-1.5 text-sm opacity-70 cursor-not-allowed">休講</span>
-        </div>
-      </div>
+       <div class="text-center mt-8">
+         <a href="https://line.me/R/ti/p/@ife1726h" target="_blank" rel="noopener" class="btn">参加予約はこちら</a>
+       </div>
     </div>
   </section>
 
@@ -310,9 +437,9 @@
     About Me
   ============================== -->
   <section id="about" class="py-24">
-      <div class="mx-auto max-w-6xl flex flex-col md:flex-row items-start gap-12 px-4">
-      <div class="md:w-8/12 order-2 md:order-2">
-        <h2 class="text-3xl md:text-4xl mb-6 font-extrabold text-primary">自己紹介</h2>
+      <div class="mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-12 px-4">
+      <div class="md:w-8/12 order-2 md:order-1">
+        <h2 class="text-5xl font-extrabold text-[var(--primary)]">自己紹介</h2>
         <p class="leading-relaxed whitespace-pre-line">
           小西 聡美 — フリーランスヨガインストラクター／アロマコーディネーター
 
@@ -335,9 +462,9 @@
           - 2022 年 3 月  RYT300 修了・E-RYT200 取得
         </p>
       </div>
-      <div class="md:w-4/12 order-1 md:order-1 flex flex-col items-center text-center mb-8 md:mb-0">
+      <div class="md:w-4/12 order-1 md:order-2 flex flex-col items-center text-center mb-8 md:mb-0">
         <img src="img/satomi-konishi-yoga-instructor.jpg" alt="ヨガポーズをとる小西聡美インストラクター" class="rounded-full w-64 h-64 object-cover shadow-lg">
-        <h3 class="text-4xl font-bold text-dark mt-4">Satomi</h3>
+        <h3 class="text-2xl font-bold text-dark mt-4">Satomi</h3>
       </div>
     </div>
   </section>
@@ -362,7 +489,109 @@
   </div>
 </section>
 
+<footer>
+  <div class="wavy-divider-top">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill" style="fill:var(--base)"></path>
+    </svg>
+  </div>
+  <p>© 2024 新琴似ヨガ All rights reserved.</p>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const calendarContainer = document.getElementById('calendar-container');
+    const today = new Date(); // Use current date
+
+    const lessonTime = "10:30-11:30";
+    const cancelledDates = ['2025-08-14', '2025-08-21'];
+
+    function generateCalendar(year, month) {
+        const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+        const dayNames = ["日", "月", "火", "水", "木", "金", "土"];
+
+        const calendarDiv = document.createElement('div');
+        calendarDiv.className = 'calendar';
+
+        let header = document.createElement('div');
+        header.className = 'calendar-header';
+        header.textContent = `${year}年 ${monthNames[month - 1]}`;
+        calendarDiv.appendChild(header);
+
+        let table = document.createElement('table');
+        table.className = 'calendar-grid';
+
+        let thead = table.createTHead();
+        let row = thead.insertRow();
+        dayNames.forEach(name => {
+            let th = document.createElement('th');
+            th.textContent = name;
+            if (name === '日') th.style.color = '#E69B9B';
+            if (name === '土') th.style.color = '#9BBBE6';
+            row.appendChild(th);
+        });
+
+        let tbody = table.createTBody();
+        const firstDay = new Date(year, month - 1, 1);
+        const lastDay = new Date(year, month, 0);
+        const startingDay = firstDay.getDay();
+        const totalDays = lastDay.getDate();
+
+        let date = 1;
+        for (let i = 0; i < 6; i++) {
+            let weekRow = tbody.insertRow();
+            for (let j = 0; j < 7; j++) {
+                let cell = weekRow.insertCell();
+                if (i === 0 && j < startingDay) {
+                    cell.classList.add('is-other-month');
+                } else if (date > totalDays) {
+                    cell.classList.add('is-other-month');
+                } else {
+                    const currentDate = new Date(year, month - 1, date);
+                    
+                    // Correctly format date to YYYY-MM-DD
+                    const y = currentDate.getFullYear();
+                    const m = String(currentDate.getMonth() + 1).padStart(2, '0');
+                    const d = String(currentDate.getDate()).padStart(2, '0');
+                    const currentDateStr = `${y}-${m}-${d}`;
+
+                    cell.innerHTML = `<div class="calendar-day">${date}</div><div class="day-content"></div>`;
+                    
+                    if (currentDate.getFullYear() === today.getFullYear() &&
+                        currentDate.getMonth() === today.getMonth() &&
+                        date === today.getDate()) {
+                        cell.classList.add('is-today');
+                    }
+
+                    const isCancelled = cancelledDates.includes(currentDateStr);
+                    
+                    // Thursday is lesson day (Day 4)
+                    if (currentDate.getDay() === 4) {
+                        cell.classList.add('is-lesson-day');
+                        const dayContent = cell.querySelector('.day-content');
+                        if (isCancelled) {
+                            cell.classList.add('is-cancelled');
+                            dayContent.textContent = '休講';
+                        } else {
+                            dayContent.textContent = lessonTime;
+                        }
+                    }
+                    date++;
+                }
+            }
+            if (date > totalDays) break;
+        }
+        calendarDiv.appendChild(table);
+        return calendarDiv;
+    }
+
+    // Generate calendars for August and September 2025
+    const augustCalendar = generateCalendar(2025, 8);
+    const septemberCalendar = generateCalendar(2025, 9);
+
+    calendarContainer.appendChild(augustCalendar);
+    calendarContainer.appendChild(septemberCalendar);
+  });
+  </script>
 </body>
 </html>
-
-  
