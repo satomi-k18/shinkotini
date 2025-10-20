@@ -504,7 +504,7 @@
     const today = new Date(); // Use current date
 
     const lessonTime = "10:30-11:30";
-    const cancelledDates = ['2025-08-14', '2025-08-21'];
+    const cancelledDates = [];
 
     function generateCalendar(year, month) {
         const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
@@ -585,12 +585,16 @@
         return calendarDiv;
     }
 
-    // Generate calendars for August and September 2025
-    const augustCalendar = generateCalendar(2025, 8);
-    const septemberCalendar = generateCalendar(2025, 9);
+    const targetMonths = [
+      { year: 2024, month: 10 },
+      { year: 2024, month: 11 },
+      { year: 2024, month: 12 },
+    ];
 
-    calendarContainer.appendChild(augustCalendar);
-    calendarContainer.appendChild(septemberCalendar);
+    targetMonths.forEach(({ year, month }) => {
+      const calendar = generateCalendar(year, month);
+      calendarContainer.appendChild(calendar);
+    });
   });
   </script>
 </body>
